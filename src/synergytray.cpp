@@ -107,13 +107,19 @@ void SynergyTray::startSynergy()
     }
 
     // start a synergy server if any of the clients are available
-    if (NetworkUtils::isHostAvailable(Settings::client_left()) ||
+    else if (NetworkUtils::isHostAvailable(Settings::client_left()) ||
         NetworkUtils::isHostAvailable(Settings::client_top()) ||
         NetworkUtils::isHostAvailable(Settings::client_right()) ||
         NetworkUtils::isHostAvailable(Settings::client_bottom()) ) {
         m_synergyServer->start();
         m_view->ui_mainview.textedit->setText("started server");
     }
+
+    // no pc found
+    else {
+        m_view->ui_mainview.textedit->setText("server '" + Settings::server() + "' is not available on the network");
+    }
+
 }
 
 void SynergyTray::stopSynergy()
