@@ -36,10 +36,6 @@ SynergyTray::SynergyTray()
 
     // update configuration
     updateConfig();
-
-    if (NetworkUtils::isHostAvailable("marc-laptop")) {
-        m_view->ui_mainview.textedit->setText("connected");
-    }
 }
 
 SynergyTray::~SynergyTray()
@@ -87,14 +83,6 @@ void SynergyTray::showSettingsDialog()
 
 void SynergyTray::updateConfig()
 {
-    // stop running instances
-    if (m_synergyServer->isRunning()) {
-        m_synergyServer->stop();
-    }
-    if (m_synergyClient->isRunning()) {
-        m_synergyClient->stop();
-    }
-
     // server
     m_synergyServer->setHostname(m_hostname);
     m_synergyServer->setClients(Settings::client_left(), Settings::client_top(), Settings::client_right(), Settings::client_bottom());
@@ -103,8 +91,39 @@ void SynergyTray::updateConfig()
     // client
     m_synergyClient->setServer(Settings::server());
 
-    // connect to available machines
-    //connect();
+    // connect
+    startSynergy();
+}
+
+void SynergyTray::startSynergy()
+{
+    // stop running instances
+    stopSynergy();
+
+    // start a synergy client if the server is available on the network
+    if (NetworkUtils::isHostAvailable(Settings::server())) {
+        m_synergyClient->start();
+        m_view->ui_mainview.textedit->setText("connected as client to " + Settings::server());
+    }
+
+    // start a synergy server if any of the clients are available
+    if (NetworkUtils::isHostAvailable(Settings::client_left()) ||
+        NetworkUtils::isHostAvailable(Settings::client_top()) ||
+        NetworkUtils::isHostAvailable(Settings::client_right()) ||
+        NetworkUtils::isHostAvailable(Settings::client_bottom()) ) {
+        m_synergyServer->start();
+        m_view->ui_mainview.textedit->setText("started server");
+    }
+}
+
+void SynergyTray::stopSynergy()
+{
+    if (m_synergyServer->isRunning()) {
+        m_synergyServer->stop();
+    }
+    if (m_synergyClient->isRunning()) {
+        m_synergyClient->stop();
+    }
 }
 
 void SynergyTray::toggleSynergyServer()

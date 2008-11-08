@@ -59,6 +59,8 @@ public:
 private slots:
     void showSettingsDialog();
     void updateConfig();
+    void startSynergy();
+    void stopSynergy();
     void toggleSynergyServer();
 
 private:

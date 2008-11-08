@@ -57,7 +57,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="kcfg_client_left">
+        <widget class="KLineEdit" name="kcfg_client_left">
          <property name="alignment">
           <set>Qt::AlignCenter</set>
          </property>
@@ -81,14 +81,14 @@
      <item>
       <layout class="QGridLayout" name="gridLayout">
        <item row="2" column="0">
-        <widget class="QLineEdit" name="kcfg_client_top">
+        <widget class="KLineEdit" name="kcfg_client_top">
          <property name="alignment">
           <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
        <item row="13" column="0">
-        <widget class="QLineEdit" name="kcfg_client_bottom">
+        <widget class="KLineEdit" name="kcfg_client_bottom">
          <property name="alignment">
           <set>Qt::AlignCenter</set>
          </property>
@@ -220,7 +220,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="kcfg_client_right">
+        <widget class="KLineEdit" name="kcfg_client_right">
          <property name="alignment">
           <set>Qt::AlignCenter</set>
          </property>
