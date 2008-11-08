@@ -26,8 +26,12 @@
             <default></default>
     </entry>
     <entry name="autostart" type="Bool">
-            <label>Autostart</label>
+            <label>Autostart Synergy</label>
             <default>true</default>
+    </entry>
+    <entry name="stoponclose" type="Bool">
+            <label>Stop Synergy on close</label>
+            <default>false</default>
     </entry>
   </group>
 </kcfg>

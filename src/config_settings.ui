@@ -34,7 +34,14 @@
      <item row="0" column="0">
       <widget class="QCheckBox" name="kcfg_autostart">
        <property name="text">
-        <string>Start Synergy automatically</string>
+        <string>Start Synergy automatically when SynergyTray starts</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QCheckBox" name="kcfg_stoponclose">
+       <property name="text">
+        <string>Stop Synergy when SynergyTray closes</string>
        </property>
       </widget>
      </item>
