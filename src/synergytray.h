@@ -8,6 +8,7 @@
 
 #include <QtGui/QDropEvent>
 #include <QtGui/QPainter>
+#include <QApplication>
 
 #include <kxmlguiwindow.h>
 #include <kconfigdialog.h>

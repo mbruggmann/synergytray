@@ -27,21 +27,33 @@ SynergyTray::SynergyTray()
     m_synergyServer = new SynergyServer();
     m_synergyClient = new SynergyClient();
 
-    // stop possible running instances of synergy
-    m_synergyServer->stop();
-    m_synergyClient->stop();
-
     // update the hostname
     m_hostname = NetworkUtils::getHostname();
 
     // update configuration
     updateConfig();
+
+    // close running instances of synergy
+    m_synergyServer->stop();
+    m_synergyClient->stop();
+
+    // stop on close
+    if (Settings::stoponclose()) {
+        connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(stopSynergy()));
+        connect(qApp, SIGNAL(lastWindowClosed()), this, SLOT(stopSynergy()));
+    }
+
+    // autostart
+    if (Settings::autostart()) {
+        startSynergy();
+    }
 }
 
 SynergyTray::~SynergyTray()
 {
     delete m_view;
     delete m_synergyServer;
+    delete m_synergyClient;
 }
 
 void SynergyTray::showSettingsDialog()
@@ -90,9 +102,6 @@ void SynergyTray::updateConfig()
 
     // client
     m_synergyClient->setServer(Settings::server());
-
-    // connect
-    startSynergy();
 }
 
 void SynergyTray::startSynergy()
