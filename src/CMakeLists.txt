@@ -1,7 +1,7 @@
 set(synergytray_SRCS
-   synergytray.cpp
    main.cpp
-   synergytrayview.cpp
+   synergytray.cpp
+   mainview.cpp
    synergyserver.cpp
    synergyclient.cpp
    iconloader.cpp

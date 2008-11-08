@@ -1,10 +1,10 @@
 /*
- * synergytrayview.h
+ * mainview.h
  *
  * Copyright (C) 2007 Marc Bruggmann <bruggmann@web.de>
  */
-#ifndef SYNERGYTRAYVIEW_H
-#define SYNERGYTRAYVIEW_H
+#ifndef MAINVIEW_H
+#define MAINVIEW_H
 
 #include <QtGui/QWidget>
 
@@ -20,19 +20,19 @@
  * @version 0.1
  */
 
-class SynergyTrayView : public QWidget, public Ui::mainview
+class MainView : public QWidget, public Ui::mainview
 {
     Q_OBJECT
 public:
     /**
      * Default constructor
      */
-    SynergyTrayView(QWidget *parent);
+    MainView(QWidget *parent);
 
     /**
      * Destructor
      */
-    virtual ~SynergyTrayView();
+    virtual ~MainView();
 
 public:
     Ui::mainview ui_mainview;
@@ -41,9 +41,7 @@ signals:
 
 
 private slots:
-    void settingsChanged();
-//    void on_configButton_clicked();
     void on_closeButton_clicked();
 };
 
-#endif // SynergyTrayVIEW_H
+#endif // MAINVIEW_H

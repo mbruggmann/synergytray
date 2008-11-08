@@ -7,7 +7,7 @@
 
 SynergyTray::SynergyTray()
     : KXmlGuiWindow(),
-      m_view(new SynergyTrayView(this))
+      m_view(new MainView(this))
 {
     // set the main widget
     setCentralWidget(m_view);
@@ -21,7 +21,6 @@ SynergyTray::SynergyTray()
 
     // set up buttons
     connect(m_view->ui_mainview.configButton, SIGNAL(clicked()), this, SLOT(showSettingsDialog()));
-    connect(m_view->ui_mainview.toggleButton, SIGNAL(clicked()), this, SLOT(toggleSynergyServer()));
 
     // create server and client objects
     m_synergyServer = new SynergyServer();
@@ -47,6 +46,11 @@ SynergyTray::SynergyTray()
     if (Settings::autostart()) {
         startSynergy();
     }
+
+    // timer
+    QTimer *connUpdate = new QTimer(this);
+    //connect(connUpdate, SIGNAL(timeout()), this, SLOT(connectionUpdate()));
+    connUpdate->start(30*1000);
 }
 
 SynergyTray::~SynergyTray()
@@ -138,15 +142,6 @@ void SynergyTray::stopSynergy()
     }
     if (m_synergyClient->isRunning()) {
         m_synergyClient->stop();
-    }
-}
-
-void SynergyTray::toggleSynergyServer()
-{
-    if (m_synergyServer->isRunning()) {
-        m_synergyServer->stop();
-    } else {
-        m_synergyServer->start();
     }
 }
 

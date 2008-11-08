@@ -1,9 +1,9 @@
 /*
- * synergytrayview.cpp
+ * mainview.cpp
  *
  * Copyright (C) 2008 Marc Bruggmann <bruggmann@web.de>
  */
-#include "synergytrayview.h"
+#include "mainview.h"
 #include "settings.h"
 
 #include <klocale.h>
@@ -13,25 +13,20 @@
 #include <KConfigDialog>
 
 
-SynergyTrayView::SynergyTrayView(QWidget *)
+MainView::MainView(QWidget *)
 {
     ui_mainview.setupUi(this);
     setAutoFillBackground(true);
 }
 
-SynergyTrayView::~SynergyTrayView()
+MainView::~MainView()
 {
 
 }
 
-void SynergyTrayView::settingsChanged()
-{
-
-}
-
-void SynergyTrayView::on_closeButton_clicked()
+void MainView::on_closeButton_clicked()
 {
     qApp->quit();
 }
 
-#include "synergytrayview.moc"
+#include "mainview.moc"

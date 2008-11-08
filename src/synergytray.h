@@ -9,6 +9,7 @@
 #include <QtGui/QDropEvent>
 #include <QtGui/QPainter>
 #include <QApplication>
+#include <QTimer>
 
 #include <kxmlguiwindow.h>
 #include <kconfigdialog.h>
@@ -18,7 +19,7 @@
 #include <KDE/KLocale>
 
 #include "settings.h"
-#include "synergytrayview.h"
+#include "mainview.h"
 #include "synergyserver.h"
 #include "synergyclient.h"
 #include "iconloader.h"
@@ -62,16 +63,15 @@ private slots:
     void updateConfig();
     void startSynergy();
     void stopSynergy();
-    void toggleSynergyServer();
 
 private:
     void setupActions();
 
 private:
-    SynergyTrayView *m_view;
     SynergyServer *m_synergyServer;
     SynergyClient *m_synergyClient;
 
+    MainView *m_view;
     Ui::config_client ui_config_client;
     Ui::config_server ui_config_server;
     Ui::config_settings ui_config_settings;
