@@ -19,6 +19,7 @@
 #include "settings.h"
 #include "synergytrayview.h"
 #include "synergyserver.h"
+#include "synergyclient.h"
 #include "iconloader.h"
 #include "networkutils.h"
 
@@ -57,7 +58,7 @@ public:
 
 private slots:
     void showSettingsDialog();
-    void updateServer();
+    void updateConfig();
     void toggleSynergyServer();
 
 private:
@@ -66,6 +67,7 @@ private:
 private:
     SynergyTrayView *m_view;
     SynergyServer *m_synergyServer;
+    SynergyClient *m_synergyClient;
 
     Ui::config_client ui_config_client;
     Ui::config_server ui_config_server;

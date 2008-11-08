@@ -79,12 +79,6 @@ bool SynergyServer::start()
         return false;
     }
 
-//    m_serverProcess->clearEnvironment();
-//    m_serverProcess->clearProgram();
-//
-//    *m_serverProcess << "synergys" << "--config" << m_confFileName;
-//    int pid = m_serverProcess->startDetached();
-
     KProcess *p = ProcessUtils::getNew(this, "synergys", "-f", "--config", m_confFileName);
     int pid = p->startDetached();
 
