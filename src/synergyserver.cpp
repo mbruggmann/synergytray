@@ -85,30 +85,24 @@ bool SynergyServer::start()
 //    *m_serverProcess << "synergys" << "--config" << m_confFileName;
 //    int pid = m_serverProcess->startDetached();
 
-    KProcess *p = ProcessUtils::getNew("synergys","--config", m_confFileName);
+    KProcess *p = ProcessUtils::getNew(this, "synergys", "-f", "--config", m_confFileName);
     int pid = p->startDetached();
 
     if (pid == 0) {
-        delete p;
         return false;
     } else {
         m_serverPid = pid;
-        delete p;
         return true;
     }
 }
 
 void SynergyServer::stop()
 {
-//    m_serverProcess->clearEnvironment();
-//    m_serverProcess->clearProgram();
-//
-//    *m_serverProcess << "killall" << "synergys";
-//    m_serverProcess->start();
-    KProcess *p = ProcessUtils::getNew("killall", "synergys");
+    KProcess *p = ProcessUtils::getNew(this, "killall", "-9", "synergys");
     p->start();
+    if (!p->waitForFinished())
+        return;
     m_serverPid = 0;
-    delete p;
 }
 
 bool SynergyServer::restart()

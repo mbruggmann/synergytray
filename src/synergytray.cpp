@@ -88,7 +88,9 @@ void SynergyTray::updateServer()
     m_synergyServer->setHostname(m_hostname);
     m_synergyServer->setClients(Settings::client_left(), Settings::client_top(), Settings::client_right(), Settings::client_bottom());
     m_synergyServer->writeConfigFile();
-    m_synergyServer->restart();
+    if (m_synergyServer->isRunning()) {
+        m_synergyServer->restart();
+    }
 }
 
 void SynergyTray::toggleSynergyServer()

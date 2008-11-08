@@ -1,8 +1,8 @@
 #include "processutils.h"
 
-KProcess* ProcessUtils::getNew(QString program, QString arg1, QString arg2)
+KProcess* ProcessUtils::getNew(QObject *parent, QString program, QString arg1, QString arg2, QString arg3)
 {
-    KProcess p = new KProcess();
+    KProcess *p = new KProcess(parent);
     p->clearEnvironment();
     p->clearProgram();
 
@@ -11,6 +11,8 @@ KProcess* ProcessUtils::getNew(QString program, QString arg1, QString arg2)
         *p << arg1;
     if (arg2 != QString())
         *p << arg2;
+    if (arg3 != QString())
+        *p << arg3;
 
     return p;
 }
