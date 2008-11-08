@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="icon" >
+    <file>video-display.png</file>
+  </qresource>
+</RCC>

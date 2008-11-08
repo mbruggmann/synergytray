@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+      http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
+  <kcfgfile name="synergytrayrc"/>
+  <group name="Preferences">
+    <entry name="client_left" type="String">
+            <label>Left client</label>
+            <default></default>
+    </entry>
+    <entry name="client_right" type="String">
+            <label>Right client</label>
+            <default></default>
+    </entry>
+    <entry name="client_top" type="String">
+            <label>Top client</label>
+            <default></default>
+    </entry>
+    <entry name="client_bottom" type="String">
+            <label>Bottom client</label>
+            <default></default>
+    </entry>
+    <entry name="server" type="String">
+            <label>Server address</label>
+            <default></default>
+    </entry>
+    <entry name="autostart" type="Bool">
+            <label>Autostart</label>
+            <default>true</default>
+    </entry>
+  </group>
+</kcfg>
