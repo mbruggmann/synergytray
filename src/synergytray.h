@@ -17,12 +17,10 @@
 #include <ksystemtrayicon.h>
 
 #include "settings.h"
-#include "mainview.h"
-#include "synergyserver.h"
-#include "synergyclient.h"
+#include "synergymanager.h"
 #include "iconloader.h"
-#include "networkutils.h"
 
+#include "mainview.h"
 #include "ui_config_client.h"
 #include "ui_config_server.h"
 #include "ui_config_settings.h"
@@ -53,21 +51,11 @@ public:
      */
     virtual ~SynergyTray();
 
-public:
-    QString m_hostname;
-
 private slots:
     void showSettingsDialog();
-    void updateConfig();
-    void startSynergy();
-    void stopSynergy();
 
 private:
-    void setupActions();
-
-private:
-    SynergyServer *m_synergyServer;
-    SynergyClient *m_synergyClient;
+    SynergyManager *m_synergyManager;
 
     KSystemTrayIcon *m_trayIcon;
 
