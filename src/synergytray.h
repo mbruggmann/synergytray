@@ -13,10 +13,8 @@
 
 #include <kxmlguiwindow.h>
 #include <kconfigdialog.h>
-#include <kactioncollection.h>
-#include <kstandardaction.h>
-#include <kiconloader.h>
 #include <KDE/KLocale>
+#include <ksystemtrayicon.h>
 
 #include "settings.h"
 #include "mainview.h"
@@ -70,6 +68,8 @@ private:
 private:
     SynergyServer *m_synergyServer;
     SynergyClient *m_synergyClient;
+
+    KSystemTrayIcon *m_trayIcon;
 
     MainView *m_view;
     Ui::config_client ui_config_client;

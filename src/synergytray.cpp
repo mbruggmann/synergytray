@@ -22,19 +22,22 @@ SynergyTray::SynergyTray()
     // set up buttons
     connect(m_view->ui_mainview.configButton, SIGNAL(clicked()), this, SLOT(showSettingsDialog()));
 
+    // set up system tray icon
+    m_trayIcon = new KSystemTrayIcon(this);
+    m_trayIcon->show();
+
     // create server and client objects
     m_synergyServer = new SynergyServer();
     m_synergyClient = new SynergyClient();
 
-    // update the hostname
+    // store the hostname
     m_hostname = NetworkUtils::getHostname();
 
     // update configuration
     updateConfig();
 
     // close running instances of synergy
-    m_synergyServer->stop();
-    m_synergyClient->stop();
+    stopSynergy();
 
     // stop on close
     if (Settings::stoponclose()) {
@@ -50,7 +53,7 @@ SynergyTray::SynergyTray()
     // timer
     QTimer *connUpdate = new QTimer(this);
     //connect(connUpdate, SIGNAL(timeout()), this, SLOT(connectionUpdate()));
-    connUpdate->start(30*1000);
+    //connUpdate->start(30*1000);
 }
 
 SynergyTray::~SynergyTray()
