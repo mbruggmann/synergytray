@@ -49,5 +49,9 @@ bool SynergyClient::restart()
 
 bool SynergyClient::isRunning()
 {
-    return (m_clientPid != 0);
+    if (m_clientPid != 0) {
+        return true;
+    } else {
+        return ProcessUtils::isRunning("synergyc");
+    }
 }

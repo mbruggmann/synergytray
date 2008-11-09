@@ -16,3 +16,30 @@ KProcess* ProcessUtils::getNew(QObject *parent, QString program, QString arg1, Q
 
     return p;
 }
+
+bool ProcessUtils::isRunning(QString processName) {
+    bool processRunning = false;
+
+    std::string proc(processName.toAscii().constData());
+    std::string cmd("pidof " + proc);
+
+    FILE *pfd = popen(cmd.c_str(), "r");
+
+    if (pfd > 0){
+        while (!feof(pfd)) {
+            char buf[1024] = {0};
+
+            if (fgets(buf, sizeof(buf), pfd) > 0) {
+                std::string result(buf);
+
+                if (result != "\n") {
+                    processRunning = true;
+                    break;
+                }
+            }
+        }
+        pclose(pfd);
+    }
+
+    return processRunning;
+}

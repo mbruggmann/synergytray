@@ -107,5 +107,9 @@ bool SynergyServer::restart()
 
 bool SynergyServer::isRunning()
 {
-    return (m_serverPid != 0);
+    if (m_serverPid != 0) {
+        return true;
+    } else {
+        return ProcessUtils::isRunning("synergys");
+    }
 }
