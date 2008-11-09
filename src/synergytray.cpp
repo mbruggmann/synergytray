@@ -45,8 +45,8 @@ SynergyTray::SynergyTray()
 
     // timer
     QTimer *connUpdate = new QTimer(this);
-    //connect(connUpdate, SIGNAL(timeout()), this, SLOT(connectionUpdate()));
-    //connUpdate->start(30*1000);
+    connect(connUpdate, SIGNAL(timeout()), m_synergyManager, SLOT(autostart()));
+    connUpdate->start(30*1000);
 }
 
 SynergyTray::~SynergyTray()
