@@ -19,6 +19,7 @@ int main(int argc, char **argv)
     KCmdLineOptions options;
     options.add("+[URL]", ki18n( "Document to open" ));
     KCmdLineArgs::addCmdLineOptions(options);
+    
     KApplication app;
 
     SynergyTray *widget = new SynergyTray;
@@ -34,7 +35,6 @@ int main(int argc, char **argv)
         KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
         if (args->count() == 0)
         {
-            //synergytray *widget = new synergytray;
             widget->show();
         }
         else
@@ -42,7 +42,6 @@ int main(int argc, char **argv)
             int i = 0;
             for (; i < args->count(); i++)
             {
-                //synergytray *widget = new synergytray;
                 widget->show();
             }
         }
