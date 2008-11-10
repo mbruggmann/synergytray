@@ -74,7 +74,7 @@ void SynergyTray::showSettingsDialog()
     ui_config_server.hostname->setText(NetworkUtils::getHostname());
 
     // load the icons
-    QPixmap screen = IconLoader::get("video-display");
+    QPixmap screen = IconLoader::getSmall("video-display");
     QPixmap keyboard = IconLoader::get("input-keyboard");
     ui_config_server.computerIcon->setPixmap(keyboard);
     ui_config_server.leftScreen->setPixmap(screen);
@@ -82,9 +82,15 @@ void SynergyTray::showSettingsDialog()
     ui_config_server.rightScreen->setPixmap(screen);
     ui_config_server.bottomScreen->setPixmap(screen);
 
+    // show clear buttons
+    ui_config_server.kcfg_client_left->setClearButtonShown(true);
+    ui_config_server.kcfg_client_top->setClearButtonShown(true);
+    ui_config_server.kcfg_client_right->setClearButtonShown(true);
+    ui_config_server.kcfg_client_bottom->setClearButtonShown(true);
+
     dialog->addPage( configServer, i18n("Server"), "input-keyboard" );
     dialog->addPage( configClient, i18n("Client"), "video-display" );
-    dialog->addPage( configSettings, i18n("Setting"), "preferences-system" );
+    dialog->addPage( configSettings, i18n("Behaviour"), "preferences-system" );
 
     connect(dialog, SIGNAL(settingsChanged(QString)), m_synergyManager, SLOT(updateConfig()));
 

@@ -17,6 +17,7 @@ public:
     virtual ~IconLoader();
 
     static QPixmap get(QString name);
+    static QPixmap getSmall(QString name);
 };
 
 #endif // ICONLOADER_H

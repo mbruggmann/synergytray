@@ -23,3 +23,17 @@ QPixmap IconLoader::get(QString name)
         LastGroup, User
     */
 }
+
+QPixmap IconLoader::getSmall(QString name)
+{
+    QPixmap icon;
+    KIconLoader *loader = KIconLoader::global();
+    icon = loader->loadIcon(name, KIconLoader::Toolbar);
+    return icon;
+
+    /* other icon groups
+        NoGroup = -1, Desktop = 0, FirstGroup = 0, Toolbar,
+        MainToolbar, Small, Panel, Dialog,
+        LastGroup, User
+    */
+}
