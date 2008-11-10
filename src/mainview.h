@@ -43,8 +43,6 @@ public:
 public slots:
     void updateState(SynergyState::Enum newState);
 
-private slots:
-    void on_closeButton_clicked();
 };
 
 #endif // MAINVIEW_H

@@ -61,9 +61,4 @@ void MainView::updateState(SynergyState::Enum newState)
     }
 }
 
-void MainView::on_closeButton_clicked()
-{
-    qApp->quit();
-}
-
 #include "mainview.moc"
