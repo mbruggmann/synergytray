@@ -10,7 +10,12 @@ set(synergytray_SRCS
    processutils.cpp
  )
 
-kde4_add_ui_files(synergytray_SRCS mainview.ui config_client.ui config_server.ui config_settings.ui)
+kde4_add_ui_files(synergytray_SRCS
+    mainview.ui
+    config_client.ui
+    config_server.ui
+    config_settings.ui
+)
 
 kde4_add_kcfg_files(synergytray_SRCS settings.kcfgc )
 
@@ -25,4 +30,4 @@ install(TARGETS synergytray DESTINATION ${BIN_INSTALL_DIR} )
 
 install( FILES synergytray.desktop  DESTINATION ${XDG_APPS_INSTALL_DIR} )
 install( FILES synergytray.kcfg  DESTINATION  ${KCFG_INSTALL_DIR} )
-install( FILES synergytrayui.rc  DESTINATION  ${DATA_INSTALL_DIR}/synergytray )
+#install( FILES synergytrayui.rc  DESTINATION  ${DATA_INSTALL_DIR}/synergytray )
