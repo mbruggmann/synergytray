@@ -46,11 +46,14 @@ SynergyTray::SynergyTray()
     if (Settings::autostart()) {
         m_synergyManager->autostart();
     }
+    if (Settings::serverstart()) {
+        m_synergyManager->startServer();
+    }
 
     // timer
     QTimer *connUpdate = new QTimer(this);
     connect(connUpdate, SIGNAL(timeout()), m_synergyManager, SLOT(autostart()));
-    connUpdate->start(30*1000);
+    connUpdate->start(10*1000);
 
     // update state
     updateState(m_synergyManager->state);

@@ -26,12 +26,12 @@ void SynergyManager::autostart()
     }
 
     // start a synergy server if any of the clients are available
-    else if (NetworkUtils::isHostAvailable(Settings::client_left()) ||
-        NetworkUtils::isHostAvailable(Settings::client_top()) ||
-        NetworkUtils::isHostAvailable(Settings::client_right()) ||
-        NetworkUtils::isHostAvailable(Settings::client_bottom()) ) {
-        m_synergyServer->start();
-    }
+//    else if (NetworkUtils::isHostAvailable(Settings::client_left()) ||
+//        NetworkUtils::isHostAvailable(Settings::client_top()) ||
+//        NetworkUtils::isHostAvailable(Settings::client_right()) ||
+//        NetworkUtils::isHostAvailable(Settings::client_bottom()) ) {
+//        m_synergyServer->start();
+//    }
 
     // no pc found
     else {

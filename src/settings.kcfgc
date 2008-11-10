@@ -2,5 +2,5 @@
 File=synergytray.kcfg
 ClassName=Settings
 Singleton=true
-Mutators=client_left, client_right, client_top, client_bottom, server, autostart, stoponclose
+Mutators=client_left, client_right, client_top, client_bottom, server, serverstart, autostart, stoponclose
 # will create the necessary code for setting those variables

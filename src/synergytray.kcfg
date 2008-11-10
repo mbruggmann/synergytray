@@ -25,8 +25,12 @@
             <label>Server address</label>
             <default></default>
     </entry>
+    <entry name="serverstart" type="Bool">
+            <label>Start the synergy server on startup</label>
+            <default>true</default>
+    </entry>
     <entry name="autostart" type="Bool">
-            <label>Autostart Synergy</label>
+            <label>Autostart synergy client when the server is available</label>
             <default>true</default>
     </entry>
     <entry name="stoponclose" type="Bool">
