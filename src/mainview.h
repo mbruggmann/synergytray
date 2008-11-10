@@ -8,6 +8,9 @@
 
 #include <QtGui/QWidget>
 
+#include "synergymanager.h"
+#include "iconloader.h"
+
 #include "ui_mainview.h"
 
 /**
@@ -37,8 +40,8 @@ public:
 public:
     Ui::mainview ui_mainview;
 
-signals:
-
+public slots:
+    void updateState(SynergyState::Enum newState);
 
 private slots:
     void on_closeButton_clicked();

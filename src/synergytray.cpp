@@ -30,7 +30,8 @@ SynergyTray::SynergyTray()
 
     // create synergy manager
     m_synergyManager = new SynergyManager();
-    connect(m_synergyManager, SIGNAL(stateChanged()), this, SLOT(updateState()));
+    connect(m_synergyManager, SIGNAL(stateChanged(SynergyState::Enum)), this, SLOT(updateState(SynergyState::Enum)));
+    connect(m_synergyManager, SIGNAL(stateChanged(SynergyState::Enum)), m_view, SLOT(updateState(SynergyState::Enum)));
 
     // update configuration
     m_synergyManager->updateConfig();
@@ -50,6 +51,10 @@ SynergyTray::SynergyTray()
     QTimer *connUpdate = new QTimer(this);
     connect(connUpdate, SIGNAL(timeout()), m_synergyManager, SLOT(autostart()));
     connUpdate->start(30*1000);
+
+    // update state
+    updateState(m_synergyManager->state);
+    m_view->updateState(m_synergyManager->state);
 }
 
 SynergyTray::~SynergyTray()
