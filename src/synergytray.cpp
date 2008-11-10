@@ -87,6 +87,7 @@ void SynergyTray::showSettingsDialog()
     ui_config_server.kcfg_client_top->setClearButtonShown(true);
     ui_config_server.kcfg_client_right->setClearButtonShown(true);
     ui_config_server.kcfg_client_bottom->setClearButtonShown(true);
+    ui_config_client.kcfg_server->setClearButtonShown(true);
 
     dialog->addPage( configServer, i18n("Server"), "input-keyboard" );
     dialog->addPage( configClient, i18n("Client"), "video-display" );
