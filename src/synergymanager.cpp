@@ -73,6 +73,28 @@ void SynergyManager::stop()
     updateState();
 }
 
+void SynergyManager::toggleClient()
+{
+    if (m_synergyClient->isRunning()) {
+        m_synergyClient->stop();
+    } else {
+        m_synergyClient->start();
+    }
+
+    updateState();
+}
+
+void SynergyManager::toggleServer()
+{
+    if (m_synergyServer->isRunning()) {
+        m_synergyServer->stop();
+    } else {
+        m_synergyServer->start();
+    }
+
+    updateState();
+}
+
 void SynergyManager::updateConfig()
 {
     // server

@@ -31,6 +31,8 @@ public slots:
     void startServer();
     void startClient();
     void stop();
+    void toggleClient();
+    void toggleServer();
     void updateConfig();
 
 signals:

@@ -19,19 +19,20 @@ SynergyTray::SynergyTray()
     setStandardToolBarMenuEnabled(false);
     setMenuBar(0);
 
-    // set up buttons
-    connect(m_view->ui_mainview.configButton, SIGNAL(clicked()), this, SLOT(showSettingsDialog()));
-
     // set up system tray icon
     m_trayIcon = new KSystemTrayIcon(this);
     m_trayIcon->show();
-    // showMinimized();
-    // setEnabled(false);
+
+    // set up buttons
+    connect(m_view->ui_mainview.configButton, SIGNAL(clicked()), this, SLOT(showSettingsDialog()));
+    connect(m_view->ui_mainview.closeButton, SIGNAL(clicked()), m_trayIcon, SLOT(toggleActive()));
 
     // create synergy manager
     m_synergyManager = new SynergyManager();
     connect(m_synergyManager, SIGNAL(stateChanged(SynergyState::Enum)), this, SLOT(updateState(SynergyState::Enum)));
     connect(m_synergyManager, SIGNAL(stateChanged(SynergyState::Enum)), m_view, SLOT(updateState(SynergyState::Enum)));
+    connect(m_view->ui_mainview.clientButton, SIGNAL(clicked()), m_synergyManager, SLOT(toggleClient()));
+    connect(m_view->ui_mainview.serverButton, SIGNAL(clicked()), m_synergyManager, SLOT(toggleServer()));
 
     // update configuration
     m_synergyManager->updateConfig();
@@ -58,6 +59,10 @@ SynergyTray::SynergyTray()
     // update state
     updateState(m_synergyManager->state);
     m_view->updateState(m_synergyManager->state);
+
+    // minimize the main window after it's ready
+    // m_trayIcon->toggleActive();
+    QTimer::singleShot(1000, m_trayIcon, SLOT(toggleActive()));
 }
 
 SynergyTray::~SynergyTray()
