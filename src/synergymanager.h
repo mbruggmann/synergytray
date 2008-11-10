@@ -8,22 +8,23 @@
 #include "settings.h"
 #include "networkutils.h"
 
+namespace SynergyState {
+    enum Enum {
+        Idle,
+        ServerRunning,
+        ClientRunning
+    };
+}
+
 class SynergyManager : public QObject
 {
     Q_OBJECT
 
 public:
-    enum SynergyState {
-        IDLE,
-        SERVER_RUNNING,
-        CLIENT_RUNNING
-    };
-
-public:
     SynergyManager();
     virtual ~SynergyManager();
 
-    SynergyState state;
+    SynergyState::Enum state;
 
 public slots:
     void autostart();
@@ -31,6 +32,9 @@ public slots:
     void startClient();
     void stop();
     void updateConfig();
+
+signals:
+    void stateChanged(SynergyState::Enum newState);
 
 private:
     SynergyServer *m_synergyServer;

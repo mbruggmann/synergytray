@@ -86,11 +86,17 @@ void SynergyManager::updateConfig()
 
 void  SynergyManager::updateState()
 {
+    SynergyState::Enum oldState = state;
+
     if (m_synergyServer->isRunning()) {
-        state = SERVER_RUNNING;
+        state = SynergyState::ServerRunning;
     } else if (m_synergyClient->isRunning()) {
-        state = CLIENT_RUNNING;
+        state = SynergyState::ClientRunning;
     } else {
-        state = IDLE;
+        state = SynergyState::Idle;
+    }
+
+    if (state != oldState) {
+        emit stateChanged(state);
     }
 }

@@ -25,9 +25,12 @@ SynergyTray::SynergyTray()
     // set up system tray icon
     m_trayIcon = new KSystemTrayIcon(this);
     m_trayIcon->show();
+    // showMinimized();
+    // setEnabled(false);
 
     // create synergy manager
     m_synergyManager = new SynergyManager();
+    connect(m_synergyManager, SIGNAL(stateChanged()), this, SLOT(updateState()));
 
     // update configuration
     m_synergyManager->updateConfig();
@@ -89,14 +92,28 @@ void SynergyTray::showSettingsDialog()
     ui_config_server.kcfg_client_bottom->setClearButtonShown(true);
     ui_config_client.kcfg_server->setClearButtonShown(true);
 
-    dialog->addPage( configServer, i18n("Server"), "input-keyboard" );
-    dialog->addPage( configClient, i18n("Client"), "video-display" );
+    dialog->addPage( configServer, i18n("Server"), "synergytray-server" );
+    dialog->addPage( configClient, i18n("Client"), "synergytray-client" );
     dialog->addPage( configSettings, i18n("Behaviour"), "preferences-system" );
 
     connect(dialog, SIGNAL(settingsChanged(QString)), m_synergyManager, SLOT(updateConfig()));
 
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->show();
+}
+
+void SynergyTray::updateState(SynergyState::Enum newState)
+{
+    QString icon = "synergytray";
+
+    if (newState == SynergyState::ServerRunning) {
+        icon = "synergytray-server";
+    } else if (newState == SynergyState::ClientRunning) {
+        icon = "synergytray-client";
+    }
+
+    m_trayIcon->setIcon(m_trayIcon->loadIcon(icon));
+    setWindowIcon(m_trayIcon->loadIcon(icon));
 }
 
 #include "synergytray.moc"
