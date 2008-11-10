@@ -51,8 +51,9 @@ public:
      */
     virtual ~SynergyTray();
 
-private slots:
+public slots:
     void showSettingsDialog();
+    void updateState(SynergyState::Enum newState);
 
 private:
     SynergyManager *m_synergyManager;

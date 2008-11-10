@@ -5,6 +5,8 @@ SynergyManager::SynergyManager()
     // create server and client objects
     m_synergyServer = new SynergyServer();
     m_synergyClient = new SynergyClient();
+
+    updateState();
 }
 
 SynergyManager::~SynergyManager()
@@ -36,6 +38,7 @@ void SynergyManager::autostart()
         // do nothing
     }
 
+    updateState();
 }
 
 void SynergyManager::startClient()
@@ -44,6 +47,8 @@ void SynergyManager::startClient()
         m_synergyServer->stop();
 
     m_synergyClient->start();
+
+    updateState();
 }
 
 void SynergyManager::startServer()
@@ -52,6 +57,8 @@ void SynergyManager::startServer()
         m_synergyClient->stop();
 
     m_synergyServer->start();
+
+    updateState();
 }
 
 void SynergyManager::stop()
@@ -62,6 +69,8 @@ void SynergyManager::stop()
     if (m_synergyClient->isRunning()) {
         m_synergyClient->stop();
     }
+
+    updateState();
 }
 
 void SynergyManager::updateConfig()
@@ -73,4 +82,21 @@ void SynergyManager::updateConfig()
 
     // client
     m_synergyClient->setServer(Settings::server());
+}
+
+void  SynergyManager::updateState()
+{
+    SynergyState::Enum oldState = state;
+
+    if (m_synergyServer->isRunning()) {
+        state = SynergyState::ServerRunning;
+    } else if (m_synergyClient->isRunning()) {
+        state = SynergyState::ClientRunning;
+    } else {
+        state = SynergyState::Idle;
+    }
+
+    if (state != oldState) {
+        emit stateChanged(state);
+    }
 }
