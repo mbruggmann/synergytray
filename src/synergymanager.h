@@ -13,8 +13,17 @@ class SynergyManager : public QObject
     Q_OBJECT
 
 public:
+    enum SynergyState {
+        IDLE,
+        SERVER_RUNNING,
+        CLIENT_RUNNING
+    };
+
+public:
     SynergyManager();
     virtual ~SynergyManager();
+
+    SynergyState state;
 
 public slots:
     void autostart();
@@ -27,6 +36,7 @@ private:
     SynergyServer *m_synergyServer;
     SynergyClient *m_synergyClient;
 
+    void updateState();
 };
 
 #endif // SYNERGYMANAGER_H
