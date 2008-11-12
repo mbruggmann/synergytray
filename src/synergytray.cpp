@@ -59,10 +59,6 @@ SynergyTray::SynergyTray()
     // update state
     updateState(m_synergyManager->state);
     m_view->updateState(m_synergyManager->state);
-
-    // minimize the main window after it's ready
-    // m_trayIcon->toggleActive();
-    QTimer::singleShot(1000, m_trayIcon, SLOT(toggleActive()));
 }
 
 SynergyTray::~SynergyTray()
