@@ -18,8 +18,8 @@ MainView::MainView(QWidget *)
     ui_mainview.setupUi(this);
     setAutoFillBackground(true);
 
-    ui_mainview.serverIcon->setPixmap(IconLoader::get("synergytray-server"));
-    ui_mainview.clientIcon->setPixmap(IconLoader::get("synergytray-client"));
+    ui_mainview.serverIcon->setPixmap(IconLoader::getSmall("synergytray-server"));
+    ui_mainview.clientIcon->setPixmap(IconLoader::getSmall("synergytray-client"));
 
     ui_mainview.clientButton->setIcon(KIcon("media-playback-start"));
     ui_mainview.serverButton->setIcon(KIcon("media-playback-start"));
